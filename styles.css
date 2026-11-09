@@ -2422,3 +2422,82 @@ a {
     font-size: 1.05rem;
   }
 }
+/* =========================================
+   GLOBAL TYPOGRAPHY — IMPACT BOLD
+========================================= */
+
+* {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif !important;
+  font-weight: 700 !important;
+}
+
+
+/* =========================================
+   ORANGE DRAINAGE SECTION — BACKGROUND PHOTO
+========================================= */
+
+.impact {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      rgba(255, 84, 46, 0.76),
+      rgba(255, 84, 46, 0.76)
+    ),
+    url("assets/images/iwaya-refuse-near-settlements.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Keep the text above the background photograph */
+
+.impact > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Remove the separate photograph on the right */
+
+.impact-side-art {
+  display: none !important;
+}
+
+/* Improve the text presentation */
+
+.impact-content {
+  max-width: 850px;
+  margin: 85px 0 0 8%;
+}
+
+.impact h2 {
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: #11110f;
+}
+
+.impact-copy {
+  color: #11110f;
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.impact-note {
+  color: #11110f;
+}
+
+/* Mobile adjustment */
+
+@media (max-width: 800px) {
+  .impact-content {
+    margin: 65px 0 0;
+  }
+
+  .impact h2 {
+    font-size: clamp(42px, 11vw, 70px);
+  }
+}
