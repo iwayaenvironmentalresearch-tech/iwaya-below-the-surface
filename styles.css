@@ -1,3 +1,4 @@
+
 :root {
   --ink: #11110f;
   --paper: #efeee9;
@@ -552,6 +553,7 @@ a {
 }
 
 /* Fills the section box exactly (works for any <img> inside it) */
+
 .location-image-placeholder img {
   position: absolute;
   inset: 0;
@@ -746,9 +748,7 @@ a {
   background: #30312d;
 }
 
-/* FIELD DETAIL PHOTOGRAPHS
-   The photo fills the box and sits above the decorative placeholder shapes;
-   the "FIELD DETAIL" tag (z-index: 2) stays on top of it. */
+/* FIELD DETAIL PHOTOGRAPHS */
 
 .issue-visual > .issue-photo {
   position: absolute;
@@ -1280,7 +1280,7 @@ a {
   border: 1px solid #45413a;
 }
 
-/* DOCUMENTARY VIDEO (YouTube embed) */
+/* DOCUMENTARY VIDEO */
 
 .documentary-video {
   position: relative;
@@ -1665,9 +1665,8 @@ a {
   overflow: hidden;
 }
 
-/* CLOSING PHOTOGRAPH
-   A dark overlay keeps the text readable; lower the .78 / .92 values to show more of the photo.
-   To use a different photo, change only the filename inside url(...). */
+/* CLOSING PHOTOGRAPH */
+
 .closing {
   background-image:
     linear-gradient(
@@ -2302,7 +2301,9 @@ a {
   * {
     transition: none !important;
   }
-}/* RECOMMENDATIONS — READABILITY */
+}
+
+/* RECOMMENDATIONS — READABILITY */
 
 .recommendation-lead {
   font-size: 1.15rem;
@@ -2345,7 +2346,9 @@ a {
   font-family: "DM Mono", monospace;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
-}/* RECOMMENDATIONS — EDITORIAL PRESENTATION */
+}
+
+/* RECOMMENDATIONS — EDITORIAL PRESENTATION */
 
 #recommendations {
   position: relative;
@@ -2422,6 +2425,7 @@ a {
     font-size: 1.05rem;
   }
 }
+
 /* =========================================
    GLOBAL TYPOGRAPHY — IMPACT BOLD
 ========================================= */
@@ -2431,20 +2435,19 @@ a {
   font-weight: 700 !important;
 }
 
-
 /* =========================================
-   ORANGE DRAINAGE SECTION — BACKGROUND PHOTO
+   DRAINAGE CONDITIONS — BACKGROUND PHOTO
 ========================================= */
 
-.impact {
+.conditions {
   position: relative;
   isolation: isolate;
   overflow: hidden;
 
   background:
     linear-gradient(
-      rgba(255, 84, 46, 0.76),
-      rgba(255, 84, 46, 0.76)
+      rgba(17, 17, 15, 0.68),
+      rgba(17, 17, 15, 0.78)
     ),
     url("assets/images/iwaya-refuse-near-settlements.jpg");
 
@@ -2453,51 +2456,48 @@ a {
   background-repeat: no-repeat;
 }
 
-/* Keep the text above the background photograph */
+/* Keep drainage content above the background photograph */
 
-.impact > * {
+.conditions > * {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
-/* Remove the separate photograph on the right */
+/* Drainage text readability */
 
-.impact-side-art {
-  display: none !important;
+.conditions .section-label {
+  border-color: rgba(255,255,255,.35);
+  color: #efeee9;
 }
 
-/* Improve the text presentation */
-
-.impact-content {
-  max-width: 850px;
-  margin: 85px 0 0 8%;
+.conditions-heading h2 {
+  color: #efeee9;
 }
 
-.impact h2 {
-  line-height: 1.05;
-  letter-spacing: 0;
-  color: #11110f;
+.conditions-intro {
+  color: #efeee9;
 }
 
-.impact-copy {
-  color: #11110f;
-  font-size: 17px;
-  line-height: 1.7;
-  max-width: 600px;
+.issue-list {
+  border-color: rgba(255,255,255,.35);
 }
 
-.impact-note {
-  color: #11110f;
+.issue-card {
+  border-color: rgba(255,255,255,.35);
 }
 
-/* Mobile adjustment */
+.issue-text h3 {
+  color: #efeee9;
+}
+
+.issue-text p {
+  color: #efeee9;
+}
+
+/* Mobile background positioning */
 
 @media (max-width: 800px) {
-  .impact-content {
-    margin: 65px 0 0;
-  }
-
-  .impact h2 {
-    font-size: clamp(42px, 11vw, 70px);
+  .conditions {
+    background-position: center;
   }
 }
