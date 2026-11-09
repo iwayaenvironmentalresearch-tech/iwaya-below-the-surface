@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 :root {
   --ink: #11110f;
@@ -5,9 +6,11 @@
   --muted: #aaa9a1;
   --orange: #ff542e;
   --line: rgba(239,238,233,.2);
-  --mono: 'DM Mono', monospace;
-  --sans: 'DM Sans', sans-serif;
-  --display: 'Space Grotesk', sans-serif;
+  /* Impact first; Anton (loaded above) is the same style for devices without Impact */
+  --impact: Impact, 'Anton', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  --mono: var(--impact);
+  --sans: var(--impact);
+  --display: var(--impact);
 }
 
 * {
@@ -16,13 +19,16 @@
 
 html {
   scroll-behavior: smooth;
+  /* Impact is already heavy; stops the browser adding a fake extra-bold */
+  font-synthesis: none;
 }
 
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--sans);
+  font-family: var(--impact);
+  letter-spacing: .02em;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -60,7 +66,7 @@ a {
 
 .wordmark {
   font: 700 25px var(--display);
-  letter-spacing: -3px;
+  letter-spacing: 1px;
 }
 
 .wordmark span {
@@ -254,8 +260,8 @@ a {
 }
 
 .hero h1 {
-  font: 700 clamp(76px,13.2vw,190px)/.77 var(--display);
-  letter-spacing: -.095em;
+  font: 700 clamp(76px,13.2vw,190px)/.9 var(--display);
+  letter-spacing: .01em;
   margin: 0;
   max-width: 1100px;
 }
@@ -481,7 +487,7 @@ a {
 
 .big-index {
   font: 500 100px/.8 var(--display);
-  letter-spacing: -10px;
+  letter-spacing: 0;
   color: #d6d4cc;
 }
 
@@ -495,8 +501,8 @@ a {
 .evidence-heading h2,
 .method h2,
 .response h2 {
-  font: 600 clamp(48px,7.2vw,100px)/.91 var(--display);
-  letter-spacing: -.075em;
+  font: 600 clamp(48px,7.2vw,100px)/1 var(--display);
+  letter-spacing: 0;
   margin: 0;
 }
 
@@ -553,7 +559,6 @@ a {
 }
 
 /* Fills the section box exactly (works for any <img> inside it) */
-
 .location-image-placeholder img {
   position: absolute;
   inset: 0;
@@ -655,8 +660,8 @@ a {
 }
 
 .location-caption h3 {
-  font: 600 clamp(48px,6vw,76px)/.9 var(--display);
-  letter-spacing: -.07em;
+  font: 600 clamp(48px,6vw,76px)/.95 var(--display);
+  letter-spacing: 0;
   margin: 0 0 30px;
 }
 
@@ -748,7 +753,9 @@ a {
   background: #30312d;
 }
 
-/* FIELD DETAIL PHOTOGRAPHS */
+/* FIELD DETAIL PHOTOGRAPHS
+   The photo fills the box and sits above the decorative placeholder shapes;
+   the "FIELD DETAIL" tag (z-index: 2) stays on top of it. */
 
 .issue-visual > .issue-photo {
   position: absolute;
@@ -865,7 +872,7 @@ a {
 
 .issue-text h3 {
   font: 600 25px var(--display);
-  letter-spacing: -1px;
+  letter-spacing: 0;
   margin: 0 0 8px;
 }
 
@@ -893,11 +900,24 @@ a {
   transform: translate(3px,-3px);
 }
 
-/* COMMUNITY IMPACT */
+/* COMMUNITY IMPACT
+   Photograph as the section background, with the same dark overlay
+   and light text as the first picture on the page (the hero). */
 
 .impact {
-  background: var(--orange);
-  color: var(--ink);
+  background-color: var(--ink);
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(17,17,15,.86) 0%,
+      rgba(17,17,15,.62) 55%,
+      rgba(17,17,15,.38) 100%
+    ),
+    url("assets/images/iwaya-refuse-near-settlements.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--paper);
   min-height: 650px;
   padding: 45px 9vw 75px;
   position: relative;
@@ -907,16 +927,16 @@ a {
 .impact-top {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #1b1b1980;
+  border-top: 1px solid rgba(239,238,233,.35);
   padding-top: 13px;
 }
 
 .impact-top .eyebrow {
-  color: #252521;
+  color: var(--orange);
 }
 
 .impact-index {
-  color: #252521;
+  color: #c5c3bc;
 }
 
 .impact-content {
@@ -927,86 +947,41 @@ a {
 }
 
 .impact-quote-mark {
-  font: 140px/.5 Georgia;
+  font: 140px/.5 var(--display);
+  color: var(--orange);
   margin: 0 0 25px;
 }
 
 .impact h2 {
-  font: 600 clamp(55px,8vw,112px)/.88 var(--display);
-  letter-spacing: -.08em;
+  font: 600 clamp(60px,9vw,128px)/.95 var(--display);
+  letter-spacing: 0;
+  color: var(--paper);
   margin: 0;
 }
 
 .impact h2 em {
   font-style: normal;
-  color: var(--paper);
+  color: var(--orange);
 }
 
 .impact-copy {
   font-size: 15px;
   line-height: 1.8;
+  color: #d9d7cf;
   max-width: 420px;
   margin: 35px 0 25px;
 }
 
 .impact-note {
   font-size: 9px;
+  color: #c5c3bc;
   max-width: 470px;
   line-height: 1.7;
 }
 
-.impact-note .orange-dot {
-  background: var(--ink);
-}
-
+/* The old circular side photo is replaced by the background photo above */
 .impact-side-art {
-  position: absolute;
-  right: 7%;
-  top: 25%;
-  width: 280px;
-  height: 280px;
-  border: 1px solid #1112;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  font: 10px var(--mono);
-  letter-spacing: 1px;
-  transform: rotate(12deg);
-}
-
-.impact-circle {
-  position: absolute;
-  width: 190px;
-  height: 190px;
-  border: 1px solid #1115;
-  border-radius: 50%;
-}
-
-/* IMPACT PHOTOGRAPH */
-
-.impact-side-art.impact-photo {
-  overflow: hidden;
-  opacity: 1;
-}
-
-.impact-side-art.impact-photo > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.impact-side-art figcaption {
-  position: absolute;
-  z-index: 2;
-  bottom: 15px;
-  left: 12px;
-  right: 12px;
-  color: white;
-  font-size: 8px;
-  line-height: 1.5;
+  display: none;
 }
 
 /* PALACE VISIT */
@@ -1025,8 +1000,8 @@ a {
 }
 
 .palace-heading h2 {
-  font: 600 clamp(48px,6vw,80px)/.95 var(--display);
-  letter-spacing: -.07em;
+  font: 600 clamp(48px,6vw,80px)/1 var(--display);
+  letter-spacing: 0;
   margin: 20px 0;
 }
 
@@ -1264,8 +1239,8 @@ a {
 .team-heading h2 {
   font-family: var(--display);
   font-size: clamp(3rem,7vw,7rem);
-  line-height: .95;
-  letter-spacing: -.07em;
+  line-height: 1;
+  letter-spacing: 0;
   margin: 20px 0;
   font-weight: 600;
 }
@@ -1280,7 +1255,7 @@ a {
   border: 1px solid #45413a;
 }
 
-/* DOCUMENTARY VIDEO */
+/* DOCUMENTARY VIDEO (YouTube embed) */
 
 .documentary-video {
   position: relative;
@@ -1349,8 +1324,8 @@ a {
 .documentary-screen h3 {
   font-family: var(--display);
   font-size: clamp(3rem,8vw,7rem);
-  line-height: .85;
-  letter-spacing: -.07em;
+  line-height: .9;
+  letter-spacing: 0;
   margin: 0 0 20px;
 }
 
@@ -1451,8 +1426,8 @@ a {
 .team-photo-placeholder h3 {
   font-family: var(--display);
   font-size: clamp(2.5rem,6vw,5rem);
-  line-height: .9;
-  letter-spacing: -.06em;
+  line-height: .95;
+  letter-spacing: 0;
   margin: 0 0 25px;
 }
 
@@ -1665,8 +1640,9 @@ a {
   overflow: hidden;
 }
 
-/* CLOSING PHOTOGRAPH */
-
+/* CLOSING PHOTOGRAPH
+   A dark overlay keeps the text readable; lower the .78 / .92 values to show more of the photo.
+   To use a different photo, change only the filename inside url(...). */
 .closing {
   background-image:
     linear-gradient(
@@ -1690,8 +1666,8 @@ a {
 }
 
 .closing h2 {
-  font: 700 clamp(100px,19vw,250px)/.75 var(--display);
-  letter-spacing: -.11em;
+  font: 700 clamp(100px,19vw,250px)/.9 var(--display);
+  letter-spacing: 0;
   margin: 95px 0 75px;
   position: relative;
   z-index: 1;
@@ -1792,7 +1768,7 @@ a {
   right: 8%;
   top: 23%;
   font: 700 230px var(--display);
-  letter-spacing: -35px;
+  letter-spacing: 0;
   color: #ffffff08;
   transform: rotate(-12deg);
 }
@@ -1979,16 +1955,11 @@ a {
   .impact {
     padding: 40px 7vw 65px;
     min-height: 600px;
+    background-position: 60% center;
   }
 
   .impact-content {
     margin: 90px 0 0 4%;
-  }
-
-  .impact-side-art {
-    right: -90px;
-    top: 35%;
-    opacity: .45;
   }
 
   .impact h2 {
@@ -2300,204 +2271,5 @@ a {
 
   * {
     transition: none !important;
-  }
-}
-
-/* RECOMMENDATIONS — READABILITY */
-
-.recommendation-lead {
-  font-size: 1.15rem;
-  line-height: 1.9;
-  font-weight: 500;
-  margin-bottom: 35px;
-}
-
-.response-copy .recommendation-placeholder {
-  padding: 28px 0;
-  align-items: flex-start;
-}
-
-.response-copy .recommendation-placeholder strong {
-  display: block;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-.response-copy .recommendation-placeholder small {
-  display: block;
-  font-size: 1rem;
-  line-height: 1.9;
-  max-width: 750px;
-}
-
-.recommendation-conclusion {
-  margin-top: 35px;
-  padding: 28px;
-  border-left: 3px solid var(--orange);
-  background: rgba(255, 84, 46, 0.06);
-  font-size: 1.05rem;
-  line-height: 1.9;
-}
-
-.recommendation-conclusion strong {
-  display: inline-block;
-  margin-bottom: 12px;
-  font-family: "DM Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-}
-
-/* RECOMMENDATIONS — EDITORIAL PRESENTATION */
-
-#recommendations {
-  position: relative;
-}
-
-#recommendations .response-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-#recommendations .response-copy {
-  max-width: 100%;
-}
-
-#recommendations .response-copy h2 {
-  max-width: 900px;
-  margin-bottom: 32px;
-}
-
-#recommendations .recommendation-lead {
-  max-width: 900px;
-  font-size: 1.2rem;
-  line-height: 1.9;
-  font-weight: 500;
-  margin-bottom: 42px;
-}
-
-#recommendations .recommendation-prose {
-  max-width: 900px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-#recommendations .recommendation-prose p {
-  margin: 0;
-  padding: 25px 0;
-  font-size: 1rem;
-  line-height: 2;
-  color: var(--text-secondary, #b8b8b2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-#recommendations .recommendation-conclusion {
-  max-width: 900px;
-  margin-top: 42px;
-  padding: 30px 0 0;
-  border-top: 2px solid var(--orange);
-}
-
-#recommendations .recommendation-conclusion .eyebrow {
-  display: block;
-  margin-bottom: 18px;
-}
-
-#recommendations .recommendation-conclusion p {
-  max-width: 780px;
-  margin: 0;
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: var(--text, #f2f0e9);
-}
-
-@media (max-width: 768px) {
-  #recommendations .recommendation-lead {
-    font-size: 1.05rem;
-  }
-
-  #recommendations .recommendation-prose p {
-    font-size: 0.95rem;
-    line-height: 1.85;
-    padding: 21px 0;
-  }
-
-  #recommendations .recommendation-conclusion p {
-    font-size: 1.05rem;
-  }
-}
-
-/* =========================================
-   GLOBAL TYPOGRAPHY — IMPACT BOLD
-========================================= */
-
-* {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif !important;
-  font-weight: 700 !important;
-}
-
-/* =========================================
-   DRAINAGE CONDITIONS — BACKGROUND PHOTO
-========================================= */
-
-.conditions {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      rgba(17, 17, 15, 0.68),
-      rgba(17, 17, 15, 0.78)
-    ),
-    url("assets/images/iwaya-refuse-near-settlements.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Keep drainage content above the background photograph */
-
-.conditions > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Drainage text readability */
-
-.conditions .section-label {
-  border-color: rgba(255,255,255,.35);
-  color: #efeee9;
-}
-
-.conditions-heading h2 {
-  color: #efeee9;
-}
-
-.conditions-intro {
-  color: #efeee9;
-}
-
-.issue-list {
-  border-color: rgba(255,255,255,.35);
-}
-
-.issue-card {
-  border-color: rgba(255,255,255,.35);
-}
-
-.issue-text h3 {
-  color: #efeee9;
-}
-
-.issue-text p {
-  color: #efeee9;
-}
-
-/* Mobile background positioning */
-
-@media (max-width: 800px) {
-  .conditions {
-    background-position: center;
   }
 }
